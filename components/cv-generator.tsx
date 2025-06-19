@@ -9,7 +9,7 @@ import { type CVData, defaultCVData } from "@/lib/cv-data";
 import { exportToPDF, exportToHTML } from "@/lib/export-utils";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Download, FileText, Coffee } from "lucide-react";
+import { Download, FileText, Coffee, Eye } from "lucide-react";
 
 export function CVGenerator() {
   const [cvData, setCVData] = useState<CVData>(defaultCVData);
@@ -70,47 +70,39 @@ export function CVGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf6f2]">
+    <div className=" bg-[#faf6f2]">
       {/* Header */}
-      <header className="bg-[#f2ece6] border-b border-[#d6c7bd] sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4">
+      <header className="bg-[#faf6f2] sticky top-0 z-10">
+        <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Coffee className="h-8 w-8 text-[#8b5e3c]" />
-              <h1 className="text-2xl font-bold text-[#3e2f28]">AutoCV</h1>
-              <span className="text-sm text-[#6e5848] hidden sm:inline">
-                Gerador de Currículos Profissionais
-              </span>
+            <div className="flex items-center justify-center gap-3">
+              <h1 className="text-2xl font-bold text-[#3e2f28] font-serif">
+                auto-cv
+              </h1>
             </div>
-            <div className="flex items-center gap-2">
-              <Button
-                onClick={handleExportHTML}
-                variant="outline"
-                size="sm"
-                className="bg-white text-[#8b5e3c] border-[#d6c7bd] hover:bg-[#e9dad0]"
-              >
-                <FileText className="h-4 w-4 mr-2" />
-                HTML
-              </Button>
-              <Button
-                onClick={handleExportPDF}
-                disabled={isLoading}
-                size="sm"
-                className="bg-[#8b5e3c] hover:bg-[#a9746e] text-white"
-              >
-                <Download className="h-4 w-4 mr-2" />
-                {isLoading ? "Exportando..." : "PDF"}
-              </Button>
+
+            <div className="flex items-center gap-3">
+              <a href="#template" className="text-[#8b5e3c] font-medium">
+                Template
+              </a>
+              <a href="#style" className="text-[#8b5e3c] font-medium">
+                Estilo
+              </a>
+              <a href="#data" className="text-[#8b5e3c] font-medium">
+                Dados
+              </a>
+              <a href="#preview" className="text-[#8b5e3c] bg-[#cdbbaec0] p-1 rounded-full font-medium">
+                <Eye/>
+              </a>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="container flex flex-col md:flex-row gap-6 mx-auto px-4 py-6">
-
+      <div className="max-w-7xl flex flex-col md:flex-row gap-6 mx-auto px-4 py-6">
         <div className="flex w-full md:w-2/3 h-[calc(100dvh-200px)] overflow-y-auto flex-col gap-6 mb-6">
           {/* Template */}
-          <Card className="p-6 bg-white border-[#d6c7bd]">
+          <Card className="p-6 bg-white border-[#d6c7bd]" id="template">
             <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
               Escolher Template
             </h2>
@@ -121,7 +113,7 @@ export function CVGenerator() {
           </Card>
 
           {/* Style Selectors */}
-          <Card className="p-6 bg-white border-[#d6c7bd]">
+          <Card className="p-6 bg-white border-[#d6c7bd]" id="style">
             <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
               Personalizar Estilo
             </h2>
@@ -134,7 +126,7 @@ export function CVGenerator() {
           </Card>
 
           {/* Form */}
-          <Card className="p-6 bg-white border-[#d6c7bd]">
+          <Card className="p-6 bg-white border-[#d6c7bd]" id="data">
             <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
               Dados Pessoais
             </h2>
@@ -144,10 +136,32 @@ export function CVGenerator() {
 
         {/* Preview */}
         <div className="w-full md:w-1/3">
-          <Card className="p-6 bg-white border-[#d6c7bd]">
-            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
-              Pré-visualização
-            </h2>
+          <Card className="p-6 bg-white border-[#d6c7bd]" id="preview">
+            <div className="flex w-full justify-between">
+              <h2 className="text-lg font-semibold text-[#3e2f28]"><Eye className="text-[#8b5e3c] bg-[#cdbbaec0] p-0.5 rounded-full"/></h2>
+
+              <div className="flex items-center gap-2">
+                <Button
+                  onClick={handleExportHTML}
+                  variant="outline"
+                  size="sm"
+                  className="bg-white text-[#8b5e3c] border-[#d6c7bd] hover:bg-[#e9dad0]"
+                >
+                  <FileText className="h-4 w-4 mr-2" />
+                  HTML
+                </Button>
+                <Button
+                  onClick={handleExportPDF}
+                  disabled={isLoading}
+                  size="sm"
+                  className="bg-[#8b5e3c] hover:bg-[#a9746e] text-white"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  {isLoading ? "Exportando..." : "PDF"}
+                </Button>
+              </div>
+            </div>
+
             <div className="border border-[#d6c7bd] rounded-lg overflow-hidden">
               <CVPreview
                 cvData={cvData}
