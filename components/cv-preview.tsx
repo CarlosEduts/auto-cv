@@ -47,7 +47,7 @@ export function CVPreview({ cvData, template, primaryColor, fontFamily }: CVPrev
       className="w-full bg-white shadow-sm"
       style={{
         fontFamily: fontFamily,
-        minHeight: "297mm", // A4 height
+        minHeight: "180mm", // A4 height
         transform: "scale(0.6)",
         transformOrigin: "top left",
         width: "166.67%", // Compensate for scale

@@ -1,73 +1,73 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { CVForm } from "./cv-form"
-import { CVPreview } from "./cv-preview"
-import { TemplateSelector } from "./template-selector"
-import { StyleCustomizer } from "./style-customizer"
-import { type CVData, defaultCVData } from "@/lib/cv-data"
-import { exportToPDF, exportToHTML } from "@/lib/export-utils"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Download, FileText, Coffee } from "lucide-react"
+import { useState, useEffect } from "react";
+import { CVForm } from "./cv-form";
+import { CVPreview } from "./cv-preview";
+import { TemplateSelector } from "./template-selector";
+import { StyleCustomizer } from "./style-customizer";
+import { type CVData, defaultCVData } from "@/lib/cv-data";
+import { exportToPDF, exportToHTML } from "@/lib/export-utils";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Download, FileText, Coffee } from "lucide-react";
 
 export function CVGenerator() {
-  const [cvData, setCVData] = useState<CVData>(defaultCVData)
-  const [selectedTemplate, setSelectedTemplate] = useState(1)
-  const [primaryColor, setPrimaryColor] = useState("#a9746e")
-  const [fontFamily, setFontFamily] = useState("Inter")
-  const [isLoading, setIsLoading] = useState(false)
+  const [cvData, setCVData] = useState<CVData>(defaultCVData);
+  const [selectedTemplate, setSelectedTemplate] = useState(1);
+  const [primaryColor, setPrimaryColor] = useState("#a9746e");
+  const [fontFamily, setFontFamily] = useState("Inter");
+  const [isLoading, setIsLoading] = useState(false);
 
   // Load data from localStorage on mount
   useEffect(() => {
-    const savedData = localStorage.getItem("auto-cv-data")
-    const savedTemplate = localStorage.getItem("auto-cv-template")
-    const savedPrimaryColor = localStorage.getItem("auto-cv-primary-color")
-    const savedFontFamily = localStorage.getItem("auto-cv-font-family")
+    const savedData = localStorage.getItem("auto-cv-data");
+    const savedTemplate = localStorage.getItem("auto-cv-template");
+    const savedPrimaryColor = localStorage.getItem("auto-cv-primary-color");
+    const savedFontFamily = localStorage.getItem("auto-cv-font-family");
 
     if (savedData) {
       try {
-        setCVData(JSON.parse(savedData))
+        setCVData(JSON.parse(savedData));
       } catch (error) {
-        console.error("Error loading saved CV data:", error)
+        console.error("Error loading saved CV data:", error);
       }
     }
-    if (savedTemplate) setSelectedTemplate(Number.parseInt(savedTemplate))
-    if (savedPrimaryColor) setPrimaryColor(savedPrimaryColor)
-    if (savedFontFamily) setFontFamily(savedFontFamily)
-  }, [])
+    if (savedTemplate) setSelectedTemplate(Number.parseInt(savedTemplate));
+    if (savedPrimaryColor) setPrimaryColor(savedPrimaryColor);
+    if (savedFontFamily) setFontFamily(savedFontFamily);
+  }, []);
 
   // Save data to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem("auto-cv-data", JSON.stringify(cvData))
-  }, [cvData])
+    localStorage.setItem("auto-cv-data", JSON.stringify(cvData));
+  }, [cvData]);
 
   useEffect(() => {
-    localStorage.setItem("auto-cv-template", selectedTemplate.toString())
-  }, [selectedTemplate])
+    localStorage.setItem("auto-cv-template", selectedTemplate.toString());
+  }, [selectedTemplate]);
 
   useEffect(() => {
-    localStorage.setItem("auto-cv-primary-color", primaryColor)
-  }, [primaryColor])
+    localStorage.setItem("auto-cv-primary-color", primaryColor);
+  }, [primaryColor]);
 
   useEffect(() => {
-    localStorage.setItem("auto-cv-font-family", fontFamily)
-  }, [fontFamily])
+    localStorage.setItem("auto-cv-font-family", fontFamily);
+  }, [fontFamily]);
 
   const handleExportPDF = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await exportToPDF(cvData, selectedTemplate, primaryColor, fontFamily)
+      await exportToPDF(cvData, selectedTemplate, primaryColor, fontFamily);
     } catch (error) {
-      console.error("Error exporting PDF:", error)
+      console.error("Error exporting PDF:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleExportHTML = () => {
-    exportToHTML(cvData, selectedTemplate, primaryColor, fontFamily)
-  }
+    exportToHTML(cvData, selectedTemplate, primaryColor, fontFamily);
+  };
 
   return (
     <div className="min-h-screen bg-[#faf6f2]">
@@ -78,7 +78,9 @@ export function CVGenerator() {
             <div className="flex items-center gap-3">
               <Coffee className="h-8 w-8 text-[#8b5e3c]" />
               <h1 className="text-2xl font-bold text-[#3e2f28]">AutoCV</h1>
-              <span className="text-sm text-[#6e5848] hidden sm:inline">Gerador de Currículos Profissionais</span>
+              <span className="text-sm text-[#6e5848] hidden sm:inline">
+                Gerador de Currículos Profissionais
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <Button
@@ -104,15 +106,25 @@ export function CVGenerator() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-6">
-        {/* Template and Style Selectors */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+      <div className="container flex flex-col md:flex-row gap-6 mx-auto px-4 py-6">
+
+        <div className="flex w-full md:w-2/3 h-[calc(100dvh-200px)] overflow-y-auto flex-col gap-6 mb-6">
+          {/* Template */}
           <Card className="p-6 bg-white border-[#d6c7bd]">
-            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">Escolher Template</h2>
-            <TemplateSelector selectedTemplate={selectedTemplate} onTemplateChange={setSelectedTemplate} />
+            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
+              Escolher Template
+            </h2>
+            <TemplateSelector
+              selectedTemplate={selectedTemplate}
+              onTemplateChange={setSelectedTemplate}
+            />
           </Card>
+
+          {/* Style Selectors */}
           <Card className="p-6 bg-white border-[#d6c7bd]">
-            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">Personalizar Estilo</h2>
+            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
+              Personalizar Estilo
+            </h2>
             <StyleCustomizer
               primaryColor={primaryColor}
               fontFamily={fontFamily}
@@ -120,36 +132,33 @@ export function CVGenerator() {
               onFontFamilyChange={setFontFamily}
             />
           </Card>
+
+          {/* Form */}
+          <Card className="p-6 bg-white border-[#d6c7bd]">
+            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
+              Dados Pessoais
+            </h2>
+            <CVForm cvData={cvData} onDataChange={setCVData} />
+          </Card>
         </div>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-          {/* Form */}
-          <div className="order-2 xl:order-1">
-            <Card className="p-6 bg-white border-[#d6c7bd]">
-              <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">Dados Pessoais</h2>
-              <CVForm cvData={cvData} onDataChange={setCVData} />
-            </Card>
-          </div>
-
-          {/* Preview */}
-          <div className="order-1 xl:order-2">
-            <div className="sticky top-24">
-              <Card className="p-6 bg-white border-[#d6c7bd]">
-                <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">Pré-visualização</h2>
-                <div className="border border-[#d6c7bd] rounded-lg overflow-hidden">
-                  <CVPreview
-                    cvData={cvData}
-                    template={selectedTemplate}
-                    primaryColor={primaryColor}
-                    fontFamily={fontFamily}
-                  />
-                </div>
-              </Card>
+        {/* Preview */}
+        <div className="w-full md:w-1/3">
+          <Card className="p-6 bg-white border-[#d6c7bd]">
+            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
+              Pré-visualização
+            </h2>
+            <div className="border border-[#d6c7bd] rounded-lg overflow-hidden">
+              <CVPreview
+                cvData={cvData}
+                template={selectedTemplate}
+                primaryColor={primaryColor}
+                fontFamily={fontFamily}
+              />
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </div>
-  )
+  );
 }
