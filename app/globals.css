@@ -87,16 +87,27 @@ Label {
 }
 
 :root {
-  --color-bg: #faf6f2;
-  --color-text-dark: #3e2f28;
-  --color-primary: #8b5e3c;
-  --color-primary-bg: #cdbbaec0;
-  --color-border: #d6c7bd;
-  --color-hover: #e9dad0;
+  --color-bg: #f5f7fa; /* cinza-azulado bem claro, ideal para fundo */
+  --color-text-dark: #1f2937; /* cinza grafite (neutro, legível) */
+  --color-primary: #3b82f6; /* azul vibrante (ação/destaque) */
+  --color-primary-bg: #dbeafe; /* azul claro para backgrounds de destaque */
+  --color-border: #cbd5e1; /* cinza claro para bordas sutis */
+  --color-hover: #60a5fa; /* azul médio para hover */
   --color-white: #ffffff;
-  --color-text-dark: #3e2f28;
-  --color-accent: #a9746e;
-  --color-muted-text: #6e5848;
+  --color-accent: #0ea5e9; /* azul turquesa para acentos visuais */
+  --color-muted-text: #6b7280; /* cinza médio para textos secundários */
+}
+
+.dark {
+  --color-bg: #0f172a; /* fundo escuro azulado */
+  --color-text-dark: #f1f5f9; /* quase branco, ótimo para leitura */
+  --color-primary: #3b82f6; /* mantém o azul vibrante como cor principal */
+  --color-primary-bg: #1e3a8a; /* azul escuro para fundo de destaque */
+  --color-border: #334155; /* cinza-azulado escuro para bordas */
+  --color-hover: #60a5fa; /* azul médio para efeitos hover */
+  --color-white: #1f2937;
+  --color-accent: #0ea5e9; /* azul turquesa ainda mais vivo no escuro */
+  --color-muted-text: #94a3b8; /* cinza-azulado claro para textos secundários */
 }
 
 .dark {
