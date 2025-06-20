@@ -9,7 +9,14 @@ import { type CVData, defaultCVData } from "@/lib/cv-data";
 import { exportToPDF, exportToHTML } from "@/lib/export-utils";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Download, FileText, Coffee, Eye } from "lucide-react";
+import {
+  Download,
+  FileText,
+  Coffee,
+  Eye,
+  Lightbulb,
+  LightbulbOff,
+} from "lucide-react";
 
 export function CVGenerator() {
   const [cvData, setCVData] = useState<CVData>(defaultCVData);
@@ -17,6 +24,7 @@ export function CVGenerator() {
   const [primaryColor, setPrimaryColor] = useState("#a9746e");
   const [fontFamily, setFontFamily] = useState("Inter");
   const [isLoading, setIsLoading] = useState(false);
+  const [theme, setTheme] = useState("light");
 
   // Load data from localStorage on mount
   useEffect(() => {
@@ -70,7 +78,7 @@ export function CVGenerator() {
   };
 
   return (
-    <div className="bg-[var(--color-bg)]">
+    <div className={`min-h-dvh bg-[var(--color-bg)] ${theme}`}>
       {/* Header */}
       <header className="bg-[var(--color-bg)] sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -102,10 +110,18 @@ export function CVGenerator() {
               </a>
               <a
                 href="#preview"
-                className="text-[var(--color-primary)] bg-[var(--color-primary-bg)] p-1 rounded-full font-medium"
+                className="text-[var(--color-primary)] bg-[var(--color-primary-bg)] p-1 rounded-full text-xs font-medium"
               >
                 <Eye />
               </a>
+              <button
+                className="text-[var(--color-primary)] bg-[var(--color-primary-bg)] p-1 rounded-full text-xs font-medium"
+                onClick={() => {
+                  theme == "light" ? setTheme("dark") : setTheme("light");
+                }}
+              >
+                {theme == "light" ? <Lightbulb /> : <LightbulbOff />}
+              </button>
             </div>
           </div>
         </div>
