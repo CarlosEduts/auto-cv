@@ -95,6 +95,11 @@ Label {
   --color-hover: #e9dad0;
   --color-accent: #a9746e;
   --color-white: #ffffff;
+  --color-text-dark: #3e2f28;
+  --color-border: #d6c7bd;
+  --color-accent: #a9746e;
+  --color-primary: #8b5e3c;
+  --color-muted-text: #6e5848;
 }
 
 .dark {
