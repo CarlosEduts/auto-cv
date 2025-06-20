@@ -93,12 +93,9 @@ Label {
   --color-primary-bg: #cdbbaec0;
   --color-border: #d6c7bd;
   --color-hover: #e9dad0;
-  --color-accent: #a9746e;
   --color-white: #ffffff;
   --color-text-dark: #3e2f28;
-  --color-border: #d6c7bd;
   --color-accent: #a9746e;
-  --color-primary: #8b5e3c;
   --color-muted-text: #6e5848;
 }
 
@@ -143,4 +140,26 @@ Label {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Scrollbar Customization (WebKit) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-muted-text);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent);
+}
+
+/* Selection Customization */
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-text-dark);
 }
