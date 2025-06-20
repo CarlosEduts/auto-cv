@@ -100,7 +100,7 @@ export function CVGenerator() {
       </header>
 
       <div className="max-w-7xl flex flex-col md:flex-row gap-6 mx-auto px-4 py-6">
-        <div className="flex w-full md:w-2/3 h-[calc(100dvh-200px)] overflow-y-auto flex-col gap-6 mb-6">
+        <div className="flex w-full md:w-2/3 h-[calc(100vh-200px)] overflow-y-auto flex-col gap-6 mb-6">
           {/* Template */}
           <Card className="p-6 bg-white border-[#d6c7bd]" id="template">
             <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
