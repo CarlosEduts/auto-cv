@@ -86,6 +86,17 @@ Label {
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+:root {
+  --color-bg: #faf6f2;
+  --color-text-dark: #3e2f28;
+  --color-primary: #8b5e3c;
+  --color-primary-bg: #cdbbaec0;
+  --color-border: #d6c7bd;
+  --color-hover: #e9dad0;
+  --color-accent: #a9746e;
+  --color-white: #ffffff;
+}
+
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);

@@ -70,29 +70,41 @@ export function CVGenerator() {
   };
 
   return (
-    <div className=" bg-[#faf6f2]">
+    <div className="bg-[var(--color-bg)]">
       {/* Header */}
-      <header className="bg-[#faf6f2] sticky top-0 z-10">
+      <header className="bg-[var(--color-bg)] sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-center gap-3">
-              <h1 className="text-2xl font-bold text-[#3e2f28] font-serif">
+              <h1 className="text-2xl font-bold text-[var(--color-text-dark)] font-serif">
                 auto-cv
               </h1>
             </div>
 
             <div className="flex items-center gap-3">
-              <a href="#template" className="text-[#8b5e3c] font-medium">
+              <a
+                href="#template"
+                className="text-[var(--color-primary)] font-medium"
+              >
                 Template
               </a>
-              <a href="#style" className="text-[#8b5e3c] font-medium">
+              <a
+                href="#style"
+                className="text-[var(--color-primary)] font-medium"
+              >
                 Estilo
               </a>
-              <a href="#data" className="text-[#8b5e3c] font-medium">
+              <a
+                href="#data"
+                className="text-[var(--color-primary)] font-medium"
+              >
                 Dados
               </a>
-              <a href="#preview" className="text-[#8b5e3c] bg-[#cdbbaec0] p-1 rounded-full font-medium">
-                <Eye/>
+              <a
+                href="#preview"
+                className="text-[var(--color-primary)] bg-[var(--color-primary-bg)] p-1 rounded-full font-medium"
+              >
+                <Eye />
               </a>
             </div>
           </div>
@@ -102,8 +114,11 @@ export function CVGenerator() {
       <div className="max-w-7xl flex flex-col md:flex-row gap-6 mx-auto px-4 py-6">
         <div className="flex w-full md:w-2/3 h-[calc(100vh-200px)] overflow-y-auto flex-col gap-6 mb-6">
           {/* Template */}
-          <Card className="p-6 bg-white border-[#d6c7bd]" id="template">
-            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
+          <Card
+            className="p-6 bg-[var(--color-white)] border-[var(--color-border)]"
+            id="template"
+          >
+            <h2 className="text-lg font-semibold text-[var(--color-text-dark)] mb-4">
               Escolher Template
             </h2>
             <TemplateSelector
@@ -113,8 +128,11 @@ export function CVGenerator() {
           </Card>
 
           {/* Style Selectors */}
-          <Card className="p-6 bg-white border-[#d6c7bd]" id="style">
-            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
+          <Card
+            className="p-6 bg-[var(--color-white)] border-[var(--color-border)]"
+            id="style"
+          >
+            <h2 className="text-lg font-semibold text-[var(--color-text-dark)] mb-4">
               Personalizar Estilo
             </h2>
             <StyleCustomizer
@@ -126,8 +144,11 @@ export function CVGenerator() {
           </Card>
 
           {/* Form */}
-          <Card className="p-6 bg-white border-[#d6c7bd]" id="data">
-            <h2 className="text-lg font-semibold text-[#3e2f28] mb-4">
+          <Card
+            className="p-6 bg-[var(--color-white)] border-[var(--color-border)]"
+            id="data"
+          >
+            <h2 className="text-lg font-semibold text-[var(--color-text-dark)] mb-4">
               Dados Pessoais
             </h2>
             <CVForm cvData={cvData} onDataChange={setCVData} />
@@ -136,16 +157,21 @@ export function CVGenerator() {
 
         {/* Preview */}
         <div className="w-full md:w-1/3">
-          <Card className="p-6 bg-white border-[#d6c7bd]" id="preview">
+          <Card
+            className="p-6 bg-[var(--color-white)] border-[var(--color-border)]"
+            id="preview"
+          >
             <div className="flex w-full justify-between">
-              <h2 className="text-lg font-semibold text-[#3e2f28]"><Eye className="text-[#8b5e3c] bg-[#cdbbaec0] p-0.5 rounded-full"/></h2>
+              <h2 className="text-lg font-semibold text-[var(--color-text-dark)]">
+                <Eye className="text-[var(--color-primary)] bg-[var(--color-primary-bg)] p-0.5 rounded-full" />
+              </h2>
 
               <div className="flex items-center gap-2">
                 <Button
                   onClick={handleExportHTML}
                   variant="outline"
                   size="sm"
-                  className="bg-white text-[#8b5e3c] border-[#d6c7bd] hover:bg-[#e9dad0]"
+                  className="bg-[var(--color-white)] text-[var(--color-primary)] border-[var(--color-border)] hover:bg-[var(--color-hover)]"
                 >
                   <FileText className="h-4 w-4 mr-2" />
                   HTML
@@ -154,7 +180,7 @@ export function CVGenerator() {
                   onClick={handleExportPDF}
                   disabled={isLoading}
                   size="sm"
-                  className="bg-[#8b5e3c] hover:bg-[#a9746e] text-white"
+                  className="bg-[var(--color-primary)] hover:bg-[var(--color-accent)] text-white"
                 >
                   <Download className="h-4 w-4 mr-2" />
                   {isLoading ? "Exportando..." : "PDF"}
@@ -162,7 +188,7 @@ export function CVGenerator() {
               </div>
             </div>
 
-            <div className="border border-[#d6c7bd] rounded-lg overflow-hidden">
+            <div className="border border-[var(--color-border)] rounded-lg overflow-hidden">
               <CVPreview
                 cvData={cvData}
                 template={selectedTemplate}
