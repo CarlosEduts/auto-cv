@@ -84,7 +84,7 @@ export function CVGenerator() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-center gap-3">
-              <h1 className="text-2xl font-bold text-[var(--color-text-dark)] font-serif">
+              <h1 className="text-2xl font-bold text-foreground font-serif">
                 auto-cv
               </h1>
             </div>
