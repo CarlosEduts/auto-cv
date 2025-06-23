@@ -1,21 +1,38 @@
-"use client"
+"use client";
 
-import type { CVData } from "@/lib/cv-data"
-import { Mail, Phone, MapPin, Globe, Linkedin, Github } from "lucide-react"
+import type { CVData } from "@/lib/cv-data";
+import { Mail, Phone, MapPin, Globe, Linkedin, Github } from "lucide-react";
 
 interface CVTemplate3Props {
-  cvData: CVData
-  primaryColor: string
-  fontFamily: string
+  cvData: CVData;
+  primaryColor: string;
+  fontFamily: string;
 }
 
-export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Props) {
+export function CVTemplate3({
+  cvData,
+  primaryColor,
+  fontFamily,
+}: CVTemplate3Props) {
   const formatDate = (dateString: string) => {
-    if (!dateString) return ""
-    const [year, month] = dateString.split("-")
-    const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-    return `${monthNames[Number.parseInt(month) - 1]} ${year}`
-  }
+    if (!dateString) return "";
+    const [year, month] = dateString.split("-");
+    const monthNames = [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ];
+    return `${monthNames[Number.parseInt(month) - 1]} ${year}`;
+  };
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-8" style={{ fontFamily }}>
@@ -30,8 +47,12 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
             />
           )}
           <div className="flex-1">
-            <h1 className="text-5xl font-light mb-2 text-gray-800">{cvData.fullName || "Seu Nome"}</h1>
-            <h2 className="text-2xl font-light text-gray-600">{cvData.jobTitle || "Sua Profissão"}</h2>
+            <h1 className="text-5xl font-light mb-2 text-gray-800">
+              {cvData.fullName || "Seu Nome"}
+            </h1>
+            <h2 className="text-2xl font-light text-gray-600">
+              {cvData.jobTitle || "Sua Profissão"}
+            </h2>
           </div>
         </div>
 
@@ -81,14 +102,19 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
       {/* Summary */}
       {cvData.summary && (
         <section className="mb-12">
-          <div className="text-gray-700 leading-relaxed text-lg font-light">{cvData.summary}</div>
+          <div className="text-gray-700 leading-relaxed text-lg font-light">
+            {cvData.summary}
+          </div>
         </section>
       )}
 
       {/* Experience */}
       {cvData.experience.length > 0 && (
         <section className="mb-12">
-          <h3 className="text-2xl font-light mb-8 text-gray-800 border-b pb-2" style={{ borderColor: primaryColor }}>
+          <h3
+            className="text-2xl font-light mb-8 text-gray-800 border-b pb-2"
+            style={{ borderColor: primaryColor }}
+          >
             Experiência
           </h3>
           <div className="space-y-8">
@@ -102,16 +128,26 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
 
                 <div className="flex justify-between items-start mb-3">
                   <div>
-                    <h4 className="text-xl font-medium text-gray-800">{exp.position}</h4>
-                    <p className="text-lg font-light" style={{ color: primaryColor }}>
+                    <h4 className="text-xl font-medium text-gray-800">
+                      {exp.position}
+                    </h4>
+                    <p
+                      className="text-lg font-light"
+                      style={{ color: primaryColor }}
+                    >
                       {exp.company}
                     </p>
                   </div>
                   <div className="text-sm text-gray-500 font-light">
-                    {formatDate(exp.startDate)} - {exp.current ? "Presente" : formatDate(exp.endDate)}
+                    {formatDate(exp.startDate)} -{" "}
+                    {exp.current ? "Presente" : formatDate(exp.endDate)}
                   </div>
                 </div>
-                {exp.description && <p className="text-gray-700 leading-relaxed font-light">{exp.description}</p>}
+                {exp.description && (
+                  <p className="text-gray-700 leading-relaxed font-light">
+                    {exp.description}
+                  </p>
+                )}
               </div>
             ))}
           </div>
@@ -121,7 +157,10 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
       {/* Education */}
       {cvData.education.length > 0 && (
         <section className="mb-12">
-          <h3 className="text-2xl font-light mb-8 text-gray-800 border-b pb-2" style={{ borderColor: primaryColor }}>
+          <h3
+            className="text-2xl font-light mb-8 text-gray-800 border-b pb-2"
+            style={{ borderColor: primaryColor }}
+          >
             Educação
           </h3>
           <div className="space-y-6">
@@ -134,13 +173,16 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
 
                 <div className="flex justify-between items-start">
                   <div>
-                    <h4 className="text-lg font-medium text-gray-800">{edu.degree}</h4>
+                    <h4 className="text-lg font-medium text-gray-800">
+                      {edu.degree}
+                    </h4>
                     <p className="font-light" style={{ color: primaryColor }}>
                       {edu.field} • {edu.institution}
                     </p>
                   </div>
                   <div className="text-sm text-gray-500 font-light">
-                    {formatDate(edu.startDate)} - {edu.current ? "Presente" : formatDate(edu.endDate)}
+                    {formatDate(edu.startDate)} -{" "}
+                    {edu.current ? "Presente" : formatDate(edu.endDate)}
                   </div>
                 </div>
               </div>
@@ -153,15 +195,22 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
         {/* Skills */}
         {cvData.skills.length > 0 && (
           <section>
-            <h3 className="text-2xl font-light mb-6 text-gray-800 border-b pb-2" style={{ borderColor: primaryColor }}>
+            <h3
+              className="text-2xl font-light mb-6 text-gray-800 border-b pb-2"
+              style={{ borderColor: primaryColor }}
+            >
               Habilidades
             </h3>
             <div className="space-y-4">
               {cvData.skills.map((skill, index) => (
                 <div key={index}>
                   <div className="flex justify-between mb-2">
-                    <span className="font-light text-gray-800">{skill.name}</span>
-                    <span className="text-sm text-gray-500 font-light">{skill.level}</span>
+                    <span className="font-light text-gray-800">
+                      {skill.name}
+                    </span>
+                    <span className="text-sm text-gray-500 font-light">
+                      {skill.level}
+                    </span>
                   </div>
                   <div className="w-full bg-gray-100 rounded-full h-1">
                     <div
@@ -172,10 +221,10 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
                           skill.level === "Básico"
                             ? "25%"
                             : skill.level === "Intermediário"
-                              ? "50%"
-                              : skill.level === "Avançado"
-                                ? "75%"
-                                : "100%",
+                            ? "50%"
+                            : skill.level === "Avançado"
+                            ? "75%"
+                            : "100%",
                       }}
                     />
                   </div>
@@ -199,8 +248,13 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
               <div className="space-y-3">
                 {cvData.languages.map((language, index) => (
                   <div key={index} className="flex justify-between">
-                    <span className="font-light text-gray-800">{language.name}</span>
-                    <span className="text-sm font-light" style={{ color: primaryColor }}>
+                    <span className="font-light text-gray-800">
+                      {language.name}
+                    </span>
+                    <span
+                      className="text-sm font-light"
+                      style={{ color: primaryColor }}
+                    >
                       {language.level}
                     </span>
                   </div>
@@ -222,10 +276,15 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
                 {cvData.certifications.map((cert, index) => (
                   <div key={index}>
                     <h4 className="font-medium text-gray-800">{cert.name}</h4>
-                    <p className="text-sm font-light" style={{ color: primaryColor }}>
+                    <p
+                      className="text-sm font-light"
+                      style={{ color: primaryColor }}
+                    >
                       {cert.issuer}
                     </p>
-                    <p className="text-xs text-gray-500 font-light">{formatDate(cert.date)}</p>
+                    <p className="text-xs text-gray-500 font-light">
+                      {formatDate(cert.date)}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -234,5 +293,5 @@ export function CVTemplate3({ cvData, primaryColor, fontFamily }: CVTemplate3Pro
         </div>
       </div>
     </div>
-  )
+  );
 }

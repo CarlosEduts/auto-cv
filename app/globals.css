@@ -110,8 +110,6 @@ Label {
   --color-muted-text: #94a3b8; /* cinza-azulado claro para textos secundários */
 }
 
-
-
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);

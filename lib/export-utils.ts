@@ -1,16 +1,21 @@
-import type { CVData } from "./cv-data"
+import type { CVData } from "./cv-data";
 
-export const exportToPDF = async (cvData: CVData, template: number, primaryColor: string, fontFamily: string) => {
+export const exportToPDF = async (
+  cvData: CVData,
+  template: number,
+  primaryColor: string,
+  fontFamily: string
+) => {
   // Create a new window with the CV content
-  const printWindow = window.open("", "_blank")
-  if (!printWindow) return
+  const printWindow = window.open("", "_blank");
+  if (!printWindow) return;
 
   // Get the CV preview element
-  const cvPreview = document.getElementById("cv-preview")
-  if (!cvPreview) return
+  const cvPreview = document.getElementById("cv-preview");
+  if (!cvPreview) return;
 
   // Clone the preview content
-  const clonedContent = cvPreview.cloneNode(true) as HTMLElement
+  const clonedContent = cvPreview.cloneNode(true) as HTMLElement;
 
   // Create the print document
   const printDocument = `
@@ -225,27 +230,32 @@ export const exportToPDF = async (cvData: CVData, template: number, primaryColor
         </div>
       </body>
     </html>
-  `
+  `;
 
-  printWindow.document.write(printDocument)
-  printWindow.document.close()
+  printWindow.document.write(printDocument);
+  printWindow.document.close();
 
   // Wait for content to load, then print
   printWindow.onload = () => {
     setTimeout(() => {
-      printWindow.print()
-      printWindow.close()
-    }, 500)
-  }
-}
+      printWindow.print();
+      printWindow.close();
+    }, 500);
+  };
+};
 
-export const exportToHTML = (cvData: CVData, template: number, primaryColor: string, fontFamily: string) => {
+export const exportToHTML = (
+  cvData: CVData,
+  template: number,
+  primaryColor: string,
+  fontFamily: string
+) => {
   // Get the CV preview element
-  const cvPreview = document.getElementById("cv-preview")
-  if (!cvPreview) return
+  const cvPreview = document.getElementById("cv-preview");
+  if (!cvPreview) return;
 
   // Clone the preview content
-  const clonedContent = cvPreview.cloneNode(true) as HTMLElement
+  const clonedContent = cvPreview.cloneNode(true) as HTMLElement;
 
   // Create the HTML document
   const htmlDocument = `
@@ -459,16 +469,16 @@ export const exportToHTML = (cvData: CVData, template: number, primaryColor: str
         ${clonedContent.innerHTML}
     </div>
 </body>
-</html>`
+</html>`;
 
   // Create and download the file
-  const blob = new Blob([htmlDocument], { type: "text/html" })
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement("a")
-  link.href = url
-  link.download = `${cvData.fullName || "curriculo"}-cv.html`
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
-  URL.revokeObjectURL(url)
-}
+  const blob = new Blob([htmlDocument], { type: "text/html" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `${cvData.fullName || "curriculo"}-cv.html`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+};

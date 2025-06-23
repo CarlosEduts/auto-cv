@@ -1,26 +1,46 @@
-"use client"
+"use client";
 
-import type { CVData } from "@/lib/cv-data"
-import { Mail, Phone, MapPin, Globe, Linkedin, Github } from "lucide-react"
+import type { CVData } from "@/lib/cv-data";
+import { Mail, Phone, MapPin, Globe, Linkedin, Github } from "lucide-react";
 
 interface CVTemplate2Props {
-  cvData: CVData
-  primaryColor: string
-  fontFamily: string
+  cvData: CVData;
+  primaryColor: string;
+  fontFamily: string;
 }
 
-export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Props) {
+export function CVTemplate2({
+  cvData,
+  primaryColor,
+  fontFamily,
+}: CVTemplate2Props) {
   const formatDate = (dateString: string) => {
-    if (!dateString) return ""
-    const [year, month] = dateString.split("-")
-    const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-    return `${monthNames[Number.parseInt(month) - 1]} ${year}`
-  }
+    if (!dateString) return "";
+    const [year, month] = dateString.split("-");
+    const monthNames = [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ];
+    return `${monthNames[Number.parseInt(month) - 1]} ${year}`;
+  };
 
   return (
     <div className="max-w-4xl mx-auto bg-white flex" style={{ fontFamily }}>
       {/* Sidebar */}
-      <div className="w-1/3 p-6 text-white" style={{ backgroundColor: primaryColor }}>
+      <div
+        className="w-1/3 p-6 text-white"
+        style={{ backgroundColor: primaryColor }}
+      >
         {/* Photo */}
         {cvData.photo && (
           <div className="text-center mb-6">
@@ -34,7 +54,9 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
 
         {/* Contact */}
         <section className="mb-6">
-          <h3 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">CONTATO</h3>
+          <h3 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">
+            CONTATO
+          </h3>
           <div className="space-y-3 text-sm">
             {cvData.email && (
               <div className="flex items-center gap-2">
@@ -78,7 +100,9 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
         {/* Skills */}
         {cvData.skills.length > 0 && (
           <section className="mb-6">
-            <h3 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">HABILIDADES</h3>
+            <h3 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">
+              HABILIDADES
+            </h3>
             <div className="space-y-3">
               {cvData.skills.map((skill, index) => (
                 <div key={index}>
@@ -93,10 +117,10 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
                           skill.level === "Básico"
                             ? "25%"
                             : skill.level === "Intermediário"
-                              ? "50%"
-                              : skill.level === "Avançado"
-                                ? "75%"
-                                : "100%",
+                            ? "50%"
+                            : skill.level === "Avançado"
+                            ? "75%"
+                            : "100%",
                       }}
                     />
                   </div>
@@ -109,7 +133,9 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
         {/* Languages */}
         {cvData.languages.length > 0 && (
           <section className="mb-6">
-            <h3 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">IDIOMAS</h3>
+            <h3 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">
+              IDIOMAS
+            </h3>
             <div className="space-y-2">
               {cvData.languages.map((language, index) => (
                 <div key={index} className="text-sm">
@@ -126,13 +152,17 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
         {/* Certifications */}
         {cvData.certifications.length > 0 && (
           <section>
-            <h3 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">CERTIFICAÇÕES</h3>
+            <h3 className="text-lg font-bold mb-4 border-b border-white/30 pb-2">
+              CERTIFICAÇÕES
+            </h3>
             <div className="space-y-3">
               {cvData.certifications.map((cert, index) => (
                 <div key={index} className="text-sm">
                   <h4 className="font-medium">{cert.name}</h4>
                   <p className="text-white/80">{cert.issuer}</p>
-                  <p className="text-white/60 text-xs">{formatDate(cert.date)}</p>
+                  <p className="text-white/60 text-xs">
+                    {formatDate(cert.date)}
+                  </p>
                 </div>
               ))}
             </div>
@@ -144,16 +174,24 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
       <div className="w-2/3 p-8">
         {/* Header */}
         <header className="mb-8">
-          <h1 className="text-4xl font-bold mb-2" style={{ color: primaryColor }}>
+          <h1
+            className="text-4xl font-bold mb-2"
+            style={{ color: primaryColor }}
+          >
             {cvData.fullName || "Seu Nome"}
           </h1>
-          <h2 className="text-xl text-gray-600 mb-4">{cvData.jobTitle || "Sua Profissão"}</h2>
+          <h2 className="text-xl text-gray-600 mb-4">
+            {cvData.jobTitle || "Sua Profissão"}
+          </h2>
         </header>
 
         {/* Summary */}
         {cvData.summary && (
           <section className="mb-8">
-            <h3 className="text-xl font-bold mb-3" style={{ color: primaryColor }}>
+            <h3
+              className="text-xl font-bold mb-3"
+              style={{ color: primaryColor }}
+            >
               RESUMO PROFISSIONAL
             </h3>
             <p className="text-gray-700 leading-relaxed">{cvData.summary}</p>
@@ -163,7 +201,10 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
         {/* Experience */}
         {cvData.experience.length > 0 && (
           <section className="mb-8">
-            <h3 className="text-xl font-bold mb-4" style={{ color: primaryColor }}>
+            <h3
+              className="text-xl font-bold mb-4"
+              style={{ color: primaryColor }}
+            >
               EXPERIÊNCIA PROFISSIONAL
             </h3>
             <div className="space-y-6">
@@ -172,15 +213,23 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <h4 className="text-lg font-semibold">{exp.position}</h4>
-                      <p className="font-medium" style={{ color: primaryColor }}>
+                      <p
+                        className="font-medium"
+                        style={{ color: primaryColor }}
+                      >
                         {exp.company}
                       </p>
                     </div>
                     <div className="text-sm text-gray-500">
-                      {formatDate(exp.startDate)} - {exp.current ? "Presente" : formatDate(exp.endDate)}
+                      {formatDate(exp.startDate)} -{" "}
+                      {exp.current ? "Presente" : formatDate(exp.endDate)}
                     </div>
                   </div>
-                  {exp.description && <p className="text-gray-700 leading-relaxed">{exp.description}</p>}
+                  {exp.description && (
+                    <p className="text-gray-700 leading-relaxed">
+                      {exp.description}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -190,7 +239,10 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
         {/* Education */}
         {cvData.education.length > 0 && (
           <section>
-            <h3 className="text-xl font-bold mb-4" style={{ color: primaryColor }}>
+            <h3
+              className="text-xl font-bold mb-4"
+              style={{ color: primaryColor }}
+            >
               EDUCAÇÃO
             </h3>
             <div className="space-y-4">
@@ -201,12 +253,16 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
                       <h4 className="text-lg font-semibold">
                         {edu.degree} em {edu.field}
                       </h4>
-                      <p className="font-medium" style={{ color: primaryColor }}>
+                      <p
+                        className="font-medium"
+                        style={{ color: primaryColor }}
+                      >
                         {edu.institution}
                       </p>
                     </div>
                     <div className="text-sm text-gray-500">
-                      {formatDate(edu.startDate)} - {edu.current ? "Presente" : formatDate(edu.endDate)}
+                      {formatDate(edu.startDate)} -{" "}
+                      {edu.current ? "Presente" : formatDate(edu.endDate)}
                     </div>
                   </div>
                 </div>
@@ -216,5 +272,5 @@ export function CVTemplate2({ cvData, primaryColor, fontFamily }: CVTemplate2Pro
         )}
       </div>
     </div>
-  )
+  );
 }

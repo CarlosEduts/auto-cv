@@ -1,21 +1,38 @@
-"use client"
+"use client";
 
-import type { CVData } from "@/lib/cv-data"
-import { Mail, Phone, MapPin, Globe, Linkedin, Github } from "lucide-react"
+import type { CVData } from "@/lib/cv-data";
+import { Mail, Phone, MapPin, Globe, Linkedin, Github } from "lucide-react";
 
 interface CVTemplate5Props {
-  cvData: CVData
-  primaryColor: string
-  fontFamily: string
+  cvData: CVData;
+  primaryColor: string;
+  fontFamily: string;
 }
 
-export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Props) {
+export function CVTemplate5({
+  cvData,
+  primaryColor,
+  fontFamily,
+}: CVTemplate5Props) {
   const formatDate = (dateString: string) => {
-    if (!dateString) return ""
-    const [year, month] = dateString.split("-")
-    const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-    return `${monthNames[Number.parseInt(month) - 1]} ${year}`
-  }
+    if (!dateString) return "";
+    const [year, month] = dateString.split("-");
+    const monthNames = [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ];
+    return `${monthNames[Number.parseInt(month) - 1]} ${year}`;
+  };
 
   return (
     <div className="max-w-4xl mx-auto bg-white p-8" style={{ fontFamily }}>
@@ -34,9 +51,16 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
           />
         )}
 
-        <h1 className="text-5xl font-bold mb-3 text-gray-800 tracking-tight">{cvData.fullName || "Seu Nome"}</h1>
-        <div className="w-24 h-1 mx-auto mb-4 rounded-full" style={{ backgroundColor: primaryColor }}></div>
-        <h2 className="text-2xl text-gray-600 mb-6 font-light tracking-wide">{cvData.jobTitle || "Sua Profissão"}</h2>
+        <h1 className="text-5xl font-bold mb-3 text-gray-800 tracking-tight">
+          {cvData.fullName || "Seu Nome"}
+        </h1>
+        <div
+          className="w-24 h-1 mx-auto mb-4 rounded-full"
+          style={{ backgroundColor: primaryColor }}
+        ></div>
+        <h2 className="text-2xl text-gray-600 mb-6 font-light tracking-wide">
+          {cvData.jobTitle || "Sua Profissão"}
+        </h2>
 
         {/* Contact Info */}
         <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
@@ -83,7 +107,9 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
       {cvData.summary && (
         <section className="mb-12 text-center">
           <div className="max-w-3xl mx-auto">
-            <p className="text-lg text-gray-700 leading-relaxed font-light italic">"{cvData.summary}"</p>
+            <p className="text-lg text-gray-700 leading-relaxed font-light italic">
+              "{cvData.summary}"
+            </p>
           </div>
         </section>
       )}
@@ -92,26 +118,44 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
       {cvData.experience.length > 0 && (
         <section className="mb-12">
           <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold text-gray-800 mb-2">Experiência Profissional</h3>
-            <div className="w-16 h-1 mx-auto rounded-full" style={{ backgroundColor: primaryColor }}></div>
+            <h3 className="text-3xl font-bold text-gray-800 mb-2">
+              Experiência Profissional
+            </h3>
+            <div
+              className="w-16 h-1 mx-auto rounded-full"
+              style={{ backgroundColor: primaryColor }}
+            ></div>
           </div>
 
           <div className="space-y-8">
             {cvData.experience.map((exp, index) => (
               <div key={index} className="text-center max-w-3xl mx-auto">
                 <div className="mb-4">
-                  <h4 className="text-2xl font-bold text-gray-800 mb-1">{exp.position}</h4>
-                  <p className="text-xl font-semibold mb-2" style={{ color: primaryColor }}>
+                  <h4 className="text-2xl font-bold text-gray-800 mb-1">
+                    {exp.position}
+                  </h4>
+                  <p
+                    className="text-xl font-semibold mb-2"
+                    style={{ color: primaryColor }}
+                  >
                     {exp.company}
                   </p>
                   <div className="text-sm text-gray-500 font-light">
-                    {formatDate(exp.startDate)} - {exp.current ? "Presente" : formatDate(exp.endDate)}
+                    {formatDate(exp.startDate)} -{" "}
+                    {exp.current ? "Presente" : formatDate(exp.endDate)}
                   </div>
                 </div>
-                {exp.description && <p className="text-gray-700 leading-relaxed font-light">{exp.description}</p>}
+                {exp.description && (
+                  <p className="text-gray-700 leading-relaxed font-light">
+                    {exp.description}
+                  </p>
+                )}
                 {index < cvData.experience.length - 1 && (
                   <div className="mt-8 flex justify-center">
-                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: primaryColor }}></div>
+                    <div
+                      className="w-2 h-2 rounded-full"
+                      style={{ backgroundColor: primaryColor }}
+                    ></div>
                   </div>
                 )}
               </div>
@@ -125,7 +169,10 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
         <section className="mb-12">
           <div className="text-center mb-8">
             <h3 className="text-3xl font-bold text-gray-800 mb-2">Educação</h3>
-            <div className="w-16 h-1 mx-auto rounded-full" style={{ backgroundColor: primaryColor }}></div>
+            <div
+              className="w-16 h-1 mx-auto rounded-full"
+              style={{ backgroundColor: primaryColor }}
+            ></div>
           </div>
 
           <div className="space-y-6">
@@ -134,11 +181,15 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
                 <h4 className="text-xl font-bold text-gray-800">
                   {edu.degree} em {edu.field}
                 </h4>
-                <p className="text-lg font-semibold mb-1" style={{ color: primaryColor }}>
+                <p
+                  className="text-lg font-semibold mb-1"
+                  style={{ color: primaryColor }}
+                >
                   {edu.institution}
                 </p>
                 <div className="text-sm text-gray-500 font-light">
-                  {formatDate(edu.startDate)} - {edu.current ? "Presente" : formatDate(edu.endDate)}
+                  {formatDate(edu.startDate)} -{" "}
+                  {edu.current ? "Presente" : formatDate(edu.endDate)}
                 </div>
               </div>
             ))}
@@ -151,15 +202,22 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
         {cvData.skills.length > 0 && (
           <section>
             <div className="text-center mb-8">
-              <h3 className="text-3xl font-bold text-gray-800 mb-2">Habilidades</h3>
-              <div className="w-16 h-1 mx-auto rounded-full" style={{ backgroundColor: primaryColor }}></div>
+              <h3 className="text-3xl font-bold text-gray-800 mb-2">
+                Habilidades
+              </h3>
+              <div
+                className="w-16 h-1 mx-auto rounded-full"
+                style={{ backgroundColor: primaryColor }}
+              ></div>
             </div>
 
             <div className="space-y-6">
               {cvData.skills.map((skill, index) => (
                 <div key={index} className="text-center">
                   <div className="mb-3">
-                    <span className="text-lg font-semibold text-gray-800">{skill.name}</span>
+                    <span className="text-lg font-semibold text-gray-800">
+                      {skill.name}
+                    </span>
                   </div>
                   <div className="flex justify-center mb-2">
                     {[1, 2, 3, 4, 5].map((dot) => (
@@ -172,17 +230,19 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
                             (skill.level === "Básico"
                               ? 1
                               : skill.level === "Intermediário"
-                                ? 3
-                                : skill.level === "Avançado"
-                                  ? 4
-                                  : 5)
+                              ? 3
+                              : skill.level === "Avançado"
+                              ? 4
+                              : 5)
                               ? primaryColor
                               : "#e5e7eb",
                         }}
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-500 font-light">{skill.level}</span>
+                  <span className="text-sm text-gray-500 font-light">
+                    {skill.level}
+                  </span>
                 </div>
               ))}
             </div>
@@ -195,15 +255,25 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
           {cvData.languages.length > 0 && (
             <section>
               <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-gray-800 mb-2">Idiomas</h3>
-                <div className="w-16 h-1 mx-auto rounded-full" style={{ backgroundColor: primaryColor }}></div>
+                <h3 className="text-3xl font-bold text-gray-800 mb-2">
+                  Idiomas
+                </h3>
+                <div
+                  className="w-16 h-1 mx-auto rounded-full"
+                  style={{ backgroundColor: primaryColor }}
+                ></div>
               </div>
 
               <div className="space-y-4">
                 {cvData.languages.map((language, index) => (
                   <div key={index} className="text-center">
-                    <div className="font-semibold text-gray-800 mb-1">{language.name}</div>
-                    <div className="text-sm font-light" style={{ color: primaryColor }}>
+                    <div className="font-semibold text-gray-800 mb-1">
+                      {language.name}
+                    </div>
+                    <div
+                      className="text-sm font-light"
+                      style={{ color: primaryColor }}
+                    >
                       {language.level}
                     </div>
                   </div>
@@ -216,18 +286,30 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
           {cvData.certifications.length > 0 && (
             <section>
               <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-gray-800 mb-2">Certificações</h3>
-                <div className="w-16 h-1 mx-auto rounded-full" style={{ backgroundColor: primaryColor }}></div>
+                <h3 className="text-3xl font-bold text-gray-800 mb-2">
+                  Certificações
+                </h3>
+                <div
+                  className="w-16 h-1 mx-auto rounded-full"
+                  style={{ backgroundColor: primaryColor }}
+                ></div>
               </div>
 
               <div className="space-y-6">
                 {cvData.certifications.map((cert, index) => (
                   <div key={index} className="text-center">
-                    <h4 className="font-bold text-gray-800 mb-1">{cert.name}</h4>
-                    <p className="font-semibold mb-1" style={{ color: primaryColor }}>
+                    <h4 className="font-bold text-gray-800 mb-1">
+                      {cert.name}
+                    </h4>
+                    <p
+                      className="font-semibold mb-1"
+                      style={{ color: primaryColor }}
+                    >
                       {cert.issuer}
                     </p>
-                    <p className="text-sm text-gray-500 font-light">{formatDate(cert.date)}</p>
+                    <p className="text-sm text-gray-500 font-light">
+                      {formatDate(cert.date)}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -236,5 +318,5 @@ export function CVTemplate5({ cvData, primaryColor, fontFamily }: CVTemplate5Pro
         </div>
       </div>
     </div>
-  )
+  );
 }
